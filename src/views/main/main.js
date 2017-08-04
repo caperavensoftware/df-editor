@@ -14,10 +14,13 @@ export class Main {
     @bindable selectedId;
     @bindable searchText;
     @bindable listTemplate;
+    @bindable items;
+    @bindable breadcrumb;
 
     constructor(eventAggregator) {
         this.eventAggregator = eventAggregator;
         this.templateParser = new TemplateParser("model");
+        this.breadcrumb = [];
     }
 
     attached() {
@@ -37,17 +40,29 @@ export class Main {
     }
 
     selectedIdChanged(newValue) {
-        this.fetch(newValue);
+        if (newValue != -1) {
+            this.fetch(newValue);
+        }
     }
 
-    modelChanged(newValue) {
+    modelChanged(newValue, oldValue) {
         if (newValue !== undefined && newValue !== null) {
+            if (oldValue) {
+                this.addCrumb(oldValue);
+            }
+
             this.schema = modelToSchemaMapping.get(newValue.constructor.name);
             this.setList("list")
         }
     }
 
+    itemsChanged() {
+        this.selectedId = -1;
+    }
+
     setList(templateId) {
+        this.items = null;
+
         if (!this.schema.templates) {
             return;
         }
@@ -58,7 +73,6 @@ export class Main {
             return;
         }
 
-        this.items = null;
         this.templateParser.parse(templateBody).then(result => this.listTemplate = `<template>${result}</template>`);
         this.items = this.model.items;
     }
@@ -68,6 +82,7 @@ export class Main {
     }
 
     fetch(id) {
+        this.allowModelEvents = true;
         return new Promise(_ => {
             this.model = this.items.find(item => item.id == id);
         })
@@ -81,5 +96,22 @@ export class Main {
         SearchFilter(newValue, this.itemsBackup).then(result => {
             this.items = result;
         });
+    }
+
+    addCrumb(model) {
+        if (this.allowModelEvents == false) {
+            return;
+        }
+
+        this.breadcrumb.push(model);
+    }
+
+    crumbSelected(item) {
+        this.allowModelEvents = false;
+
+        this.model = item;
+
+        const index = this.breadcrumb.indexOf(item);
+        this.breadcrumb.splice(index, this.breadcrumb.length - index);
     }
 }

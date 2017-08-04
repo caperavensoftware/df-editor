@@ -7,6 +7,8 @@
                 <div slot="items">
                     <icon name="search"></icon>
                     <input type="search" value.bind="searchText"/>
+
+                    <button repeat.for="item of breadcrumb" click.delegate="crumbSelected(item)">${item.name}</button>
                 </div>
             </pragma-options-toolbar>
         </div>
@@ -14,6 +16,7 @@
         <div class="body">
             <master-detail is-master-visible="true">
                 <div slot="master">
+                    <h3>${model.itemsDescription}</h3>
                     <ul selectable="selected-id.two-way: selectedId; multi: false" role="list">
                         <li repeat.for="item of items" data-id="${item.id}" class="card" role="listitem">
                             <pragma-template html.bind="listTemplate" data-item.bind="item"></pragma-template>

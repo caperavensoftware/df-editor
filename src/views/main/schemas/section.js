@@ -1,13 +1,13 @@
 export const template =
 {
-  "type": "view",
-  "fields": [
+    "type": "view",
+    "fields": [
       {
             "field": "id",
             "map": "id"
       }
-  ],
-  "body": {
+    ],
+    "body": {
     "elements": [
         {
             "element": "group",
@@ -38,5 +38,30 @@ export const template =
             ]
         }
     ]
-  }
+    },
+    "templates": [
+        {
+            "id": "list",
+            "fields": [],
+            "body": {
+                "elements": [
+                    {
+                        "element": "div",
+                        "styles": ["default-padding"],
+                        "elements": [
+                            {
+                                "element": "div",
+                                "content": "${name}",
+                            },
+                            {
+                                "element": "div",
+                                "content": "${description}",
+                                "styles": ["suppressed"]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
 };

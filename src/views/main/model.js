@@ -7,9 +7,11 @@ export class Base {
     id;
     name;
     items;
+    itemsDescription;
 
     constructor() {
         this.items = [];
+        this.itemsDescription = "No Items";
     }
 
     nextId() {
@@ -21,6 +23,7 @@ export class Model extends Base {
     constructor() {
         super();
         this.name = "Dynamic Forms";
+        this.itemsDescription = "Projects";
     }
 
     add() {
@@ -40,6 +43,11 @@ export class Project extends Base {
     projectCsv;
     formula;
 
+    constructor() {
+        super();
+        this.itemsDescription = "Sections";
+    }
+
     add() {
         const section = new Section();
         section.id = this.nextId();
@@ -56,6 +64,11 @@ export class Section extends Base {
     description;
     schemaCsv;
     schemaPdf;
+
+    constructor() {
+        super();
+        this.itemsDescription = "Section Items";
+    }
 
     add() {
         const item = new SectionItem();
