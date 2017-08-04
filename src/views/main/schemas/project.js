@@ -35,6 +35,11 @@ export const template =
                     "title": "Add Section",
                     "action": "model.add",
                     "styles": ["action"]
+                },
+                {
+                    "element": "button",
+                    "title": "Back",
+                    "action": "propCrumb"
                 }
             ]
         }

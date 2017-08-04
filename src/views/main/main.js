@@ -106,6 +106,12 @@ export class Main {
         this.breadcrumb.push(model);
     }
 
+    propCrumb() {
+        if (this.breadcrumb.length > 0) {
+            this.crumbSelected(this.breadcrumb[this.breadcrumb.length - 1]);
+        }
+    }
+
     crumbSelected(item) {
         this.allowModelEvents = false;
 
