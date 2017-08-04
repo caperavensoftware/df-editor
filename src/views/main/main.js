@@ -21,6 +21,7 @@ export class Main {
         this.eventAggregator = eventAggregator;
         this.templateParser = new TemplateParser("model");
         this.breadcrumb = [];
+        this.currentContext = this;
     }
 
     attached() {

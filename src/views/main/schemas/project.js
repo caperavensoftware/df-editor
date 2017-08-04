@@ -32,14 +32,15 @@ export const template =
             "elements": [
                 {
                     "element": "button",
-                    "title": "Add Section",
-                    "action": "model.add",
-                    "styles": ["action"]
+                    "title": "Back",
+                    "action": "context.propCrumb",
+                    "styles": ["back"]
                 },
                 {
                     "element": "button",
-                    "title": "Back",
-                    "action": "propCrumb"
+                    "title": "Add Section",
+                    "action": "model.add",
+                    "styles": ["action"]
                 }
             ]
         }

@@ -31,6 +31,12 @@ export const template =
             "elements": [
                 {
                     "element": "button",
+                    "title": "Back",
+                    "action": "context.propCrumb",
+                    "styles": ["back"]
+                },
+                {
+                    "element": "button",
                     "title": "Add Item",
                     "action": "model.add",
                     "styles": ["action"]

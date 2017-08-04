@@ -1,12 +1,17 @@
-@import './../jspm_packages/npm/pragma-views@0.0.68/scss/style.scss';
-@import './../jspm_packages/npm/pragma-views@0.0.68/scss/desktop.scss';
+@import './../jspm_packages/npm/pragma-views@0.0.69/scss/style.scss';
+@import './../jspm_packages/npm/pragma-views@0.0.69/scss/desktop.scss';
 
-.action {
+.action, .back {
   height: 2rem;
   width: 8rem;
 }
 
 .breadcrumb {
-  background: blue;
   display: inline-block;
+}
+
+.back {
+  color: white;
+  background: $secondary-background;
+  border-radius: $border-radius;
 }

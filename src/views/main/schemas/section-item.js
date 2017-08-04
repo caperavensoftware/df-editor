@@ -24,6 +24,18 @@ export const template =
                     "field": "name"
                 }
             ]
+        },
+        {
+            "element": "div",
+            "styles": ["card", "default-padding"],
+            "elements": [
+                {
+                    "element": "button",
+                    "title": "Back",
+                    "action": "context.propCrumb",
+                    "styles": ["back"]
+                }
+            ]
         }
     ]
   }
