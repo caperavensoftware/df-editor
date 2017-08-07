@@ -3,13 +3,19 @@ import {template as projectSchema} from './schemas/project';
 import {template as sectionSchema} from './schemas/section';
 import {template as sectionItemSchema} from './schemas/section-item';
 
-export class Base {
+export class NamedItem {
+    id;
+    name;
+}
+
+export class Base extends NamedItem{
     id;
     name;
     items;
     itemsDescription;
 
     constructor() {
+        super();
         this.items = [];
         this.itemsDescription = "No Items";
     }
@@ -75,8 +81,6 @@ export class Section extends Base {
         item.id = this.nextId();
         item.name = "section item name";
         item.label = "display label";
-        item.datatype = "text";
-        item.options = "";
 
         this.items.push(item);
     }
@@ -87,10 +91,32 @@ export class SectionItem extends Base {
     label;
     datatype;
     options;
+    detailSection;
+    optionalSections;
+    defaultValue;
+    defaultIsOnKey;
 
     constructor () {
         super();
+        this.defaultValue = "table.field";
+        this.defaultIsOnKey = true;
+        this.datatype = 0;
         this.fields = [];
+        this.optionalSections = [];
+        this.detailSection = new NamedItem();
+    }
+
+    /**
+     * TODO: have the ability to store sections collection.
+     * Define a repeated list like perhaps details to list details and allow selection of the detail from the list in a drop down.
+     */
+
+    addOptionalSection() {
+        this.optionalSections.push(new NamedItem());
+    }
+
+    print() {
+        console.log(this);
     }
 }
 

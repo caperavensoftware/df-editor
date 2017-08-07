@@ -83,6 +83,26 @@ export const template =
                         "datasource": 0,
                         "title": "Type",
                         "field": "datatype"
+                    },
+                    {
+                        "element": "button",
+                        "title": "print",
+                        "action": "model.print"
+                    },
+                    {
+                        "element": "template",
+                        "template": 2,
+                        "condition": "model.datatype < 7"
+                    },
+                    {
+                        "element": "template",
+                        "template": 1,
+                        "condition": "model.datatype == 10"
+                    },
+                    {
+                        "element": "template",
+                        "template": 0,
+                        "condition": "model.datatype == 11"
                     }
                 ]
             },
@@ -94,9 +114,60 @@ export const template =
                         "title": "Back",
                         "action": "context.propCrumb",
                         "styles": ["back"]
+                    },
+                    {
+                        "element": "button",
+                        "title": "Validate Field",
+                        "attributes": {
+                            "click.delegate": "context.validateOnKeyField(model.defaultValue)",
+                            "if.bind": "model.defaultIsOnKey == true"
+                        },
+                        "styles": ["action"]
                     }
                 ]
             }
         ]
-    }
+    },
+    "templates": [
+        {
+            "id": 0,
+            "elements": [
+                {
+                    "element": "h3",
+                    "content": "Conditional sections to fill in"
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "elements": [
+                {
+                    "element": "h3",
+                    "content": "Section to use to capture details"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "elements": [
+                {
+                    "element": "h3",
+                    "content": "Default Value"
+                },
+                {
+                    "element": "input",
+                    "field": "defaultValue",
+                    "title": "Value",
+                    "attributes": {
+                        "type": "text"
+                    }
+                },
+                {
+                    "element": "checkbox",
+                    "field": "defaultIsOnKey",
+                    "title": "Value is a On Key field"
+                }
+            ]
+        }
+    ]
 };
