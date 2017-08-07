@@ -85,11 +85,6 @@ export const template =
                         "field": "datatype"
                     },
                     {
-                        "element": "button",
-                        "title": "print",
-                        "action": "model.print"
-                    },
-                    {
                         "element": "template",
                         "template": 2,
                         "condition": "model.datatype < 7"

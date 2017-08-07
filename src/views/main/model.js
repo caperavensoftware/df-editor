@@ -89,12 +89,12 @@ export class Section extends Base {
 export class SectionItem extends Base {
     fields;
     label;
-    datatype;
     options;
     detailSection;
     optionalSections;
     defaultValue;
     defaultIsOnKey;
+    datatype;
 
     constructor () {
         super();
@@ -106,9 +106,15 @@ export class SectionItem extends Base {
         this.detailSection = new NamedItem();
     }
 
+    datatypeChanged(newValue) {
+
+    }
+
     /**
      * TODO: have the ability to store sections collection.
      * Define a repeated list like perhaps details to list details and allow selection of the detail from the list in a drop down.
+     *
+     * Adding a addSibling function would help capturing a lot.
      */
 
     addOptionalSection() {
