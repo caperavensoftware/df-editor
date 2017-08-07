@@ -3,8 +3,8 @@ export const template =
     "type": "view",
     "fields": [
       {
-            "field": "id",
-            "map": "id"
+        "field": "id",
+        "map": "id"
       }
     ],
     "body": {
@@ -27,8 +27,7 @@ export const template =
             ]
         },
         {
-            "element": "div",
-            "styles": ["card", "default-padding"],
+            "element": "card",
             "elements": [
                 {
                     "element": "button",
@@ -49,26 +48,22 @@ export const template =
     "templates": [
         {
             "id": "list",
-            "fields": [],
-            "body": {
-                "elements": [
-                    {
-                        "element": "div",
-                        "styles": ["default-padding"],
-                        "elements": [
-                            {
-                                "element": "div",
-                                "content": "${name}",
-                            },
-                            {
-                                "element": "div",
-                                "content": "${description}",
-                                "styles": ["suppressed"]
-                            }
-                        ]
-                    }
-                ]
-            }
+            "elements": [
+                {
+                    "element": "card",
+                    "elements": [
+                        {
+                            "element": "div",
+                            "content": "${name}",
+                        },
+                        {
+                            "element": "div",
+                            "content": "${description}",
+                            "styles": ["suppressed"]
+                        }
+                    ]
+                }
+            ]
         }
     ]
 };

@@ -3,8 +3,8 @@ export const template =
   "type": "view",
   "fields": [
       {
-            "field": "id",
-            "map": "id"
+        "field": "id",
+        "map": "id"
       }
   ],
   "body": {
@@ -26,8 +26,7 @@ export const template =
             ]
         },
         {
-            "element": "div",
-            "styles": ["card", "default-padding"],
+            "element": "card",
             "elements": [
                 {
                     "element": "button",

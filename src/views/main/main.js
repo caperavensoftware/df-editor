@@ -74,7 +74,8 @@ export class Main {
             return;
         }
 
-        this.templateParser.parse(templateBody).then(result => this.listTemplate = `<template>${result}</template>`);
+        const result = this.templateParser.parseElements(templateBody.elements);
+        this.listTemplate = `<template>${result}</template>`;
         this.items = this.model.items;
     }
 
