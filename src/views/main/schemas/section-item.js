@@ -60,6 +60,14 @@ export const template =
                     "title": "conditional"
                 }
             ]
+        },
+        {
+            "id": 1,
+            "field": "context.sections"
+        },
+        {
+            "id": 2,
+            "field": "model.optionalSections"
         }
     ],
     "body": {
@@ -118,6 +126,11 @@ export const template =
                             "if.bind": "model.defaultIsOnKey == true"
                         },
                         "styles": ["action"]
+                    },
+                    {
+                        "element": "button",
+                        "title": "Print",
+                        "action": "context.print"
                     }
                 ]
             }
@@ -125,11 +138,28 @@ export const template =
     },
     "templates": [
         {
+            "id": "optional-section-details",
+            "elements": [
+                {
+                    "element": "input",
+                    "field": "id",
+                    "title": "Id",
+                    "as-detail": true
+                }
+            ]
+        },
+        {
             "id": 0,
             "elements": [
                 {
                     "element": "h3",
                     "content": "Conditional sections to fill in"
+                },
+                {
+                    "element": "details",
+                    "datasource": 2,
+                    "template": "optional-section-details",
+                    "action": "model.addOptionalSection"
                 }
             ]
         },
@@ -139,7 +169,13 @@ export const template =
                 {
                     "element": "h3",
                     "content": "Section to use to capture details"
-                }
+                },
+                {
+                    "element": "select",
+                    "datasource": 1,
+                    "title": "Detail Section",
+                    "field": "detailSection.id"
+                },
             ]
         },
         {

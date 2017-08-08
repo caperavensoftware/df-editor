@@ -2,7 +2,7 @@ import {bindable, inject} from "aurelia-framework";
 import {EventAggregator} from 'aurelia-event-aggregator';
 import {toolbarItems} from './toolbar-items';
 import {SearchFilter} from 'pragma-views/lib/search-filter';
-import {Model, modelToSchemaMapping} from './model';
+import {Model, Project, modelToSchemaMapping} from './model';
 import {TemplateParser} from 'pragma-views/lib/template-parser';
 
 @inject(EventAggregator)
@@ -16,6 +16,7 @@ export class Main {
     @bindable listTemplate;
     @bindable items;
     @bindable breadcrumb;
+    @bindable sections;
 
     constructor(eventAggregator) {
         this.eventAggregator = eventAggregator;
@@ -33,6 +34,7 @@ export class Main {
         this.schema = null;
         this.model = null;
         this.toolbarItems = null;
+        this.sections = null;
     }
 
 
@@ -53,7 +55,14 @@ export class Main {
             }
 
             this.schema = modelToSchemaMapping.get(newValue.constructor.name);
-            this.setList("list")
+            this.setList("list");
+
+            if (newValue instanceof Model) {
+                this.sections = null;
+            }
+            else if (newValue instanceof Project) {
+                this.sections = newValue.items;
+            }
         }
     }
 
@@ -125,5 +134,9 @@ export class Main {
 
     validateOnKeyField(field) {
         console.warn(field);
+    }
+
+    print() {
+        debugger;
     }
 }

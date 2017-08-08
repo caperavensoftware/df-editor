@@ -3,9 +3,16 @@ import {template as projectSchema} from './schemas/project';
 import {template as sectionSchema} from './schemas/section';
 import {template as sectionItemSchema} from './schemas/section-item';
 
+import {bindable} from 'aurelia-framework';
+
 export class NamedItem {
     id;
     name;
+
+    constructor(id, name) {
+        this.id = id;
+        this.name = name;
+    }
 }
 
 export class Base extends NamedItem{
@@ -71,6 +78,10 @@ export class Section extends Base {
     schemaCsv;
     schemaPdf;
 
+    get title() {
+        return this.name;
+    }
+
     constructor() {
         super();
         this.itemsDescription = "Section Items";
@@ -91,10 +102,11 @@ export class SectionItem extends Base {
     label;
     options;
     detailSection;
-    optionalSections;
     defaultValue;
     defaultIsOnKey;
     datatype;
+
+    @bindable optionalSections;
 
     constructor () {
         super();
@@ -102,12 +114,14 @@ export class SectionItem extends Base {
         this.defaultIsOnKey = true;
         this.datatype = 0;
         this.fields = [];
+
         this.optionalSections = [];
+        this.optionalSections.push(new NamedItem(0));
+        this.optionalSections.push(new NamedItem(0));
+        this.optionalSections.push(new NamedItem(0));
+
         this.detailSection = new NamedItem();
-    }
-
-    datatypeChanged(newValue) {
-
+        this.detailSection.id = 0;
     }
 
     /**
@@ -118,11 +132,7 @@ export class SectionItem extends Base {
      */
 
     addOptionalSection() {
-        this.optionalSections.push(new NamedItem());
-    }
-
-    print() {
-        console.log(this);
+        return new NamedItem(0);
     }
 }
 
