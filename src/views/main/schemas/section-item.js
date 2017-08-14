@@ -138,17 +138,6 @@ export const template =
     },
     "templates": [
         {
-            "id": "optional-section-details",
-            "elements": [
-                {
-                    "element": "input",
-                    "field": "id",
-                    "title": "Id",
-                    "as-detail": true
-                }
-            ]
-        },
-        {
             "id": 0,
             "elements": [
                 {
@@ -158,7 +147,7 @@ export const template =
                 {
                     "element": "details",
                     "datasource": 2,
-                    "template": "optional-section-details",
+                    "template": 3,
                     "action": "model.addOptionalSection"
                 }
             ]
@@ -197,6 +186,29 @@ export const template =
                     "element": "checkbox",
                     "field": "defaultIsOnKey",
                     "title": "Value is a On Key field"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "elements": [
+                {
+                    "element": "input",
+                    "field": "id",
+                    "title": "Id",
+                    "as-detail": true
+                },
+                {
+                    "element": "input",
+                    "field": "name",
+                    "title": "Name",
+                    "as-detail": true
+                },
+                {
+                    "element": "select",
+                    "datasource": 1,
+                    "title": "Section",
+                    "field": "sectionId"
                 }
             ]
         }

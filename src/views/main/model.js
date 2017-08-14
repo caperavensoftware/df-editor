@@ -11,7 +11,16 @@ export class NamedItem {
 
     constructor(id, name) {
         this.id = id;
-        this.name = name;
+        this.name = name == undefined ? `item ${id}` : name;
+    }
+}
+
+export class SectionSelectionModel extends NamedItem {
+    sectionId;
+
+    constructor(id, name) {
+        super(id, name);
+        this.sectionId = 0;
     }
 }
 
@@ -116,12 +125,11 @@ export class SectionItem extends Base {
         this.fields = [];
 
         this.optionalSections = [];
-        this.optionalSections.push(new NamedItem(0));
-        this.optionalSections.push(new NamedItem(0));
-        this.optionalSections.push(new NamedItem(0));
+        this.optionalSections.push(new SectionSelectionModel(1));
+        this.optionalSections.push(new SectionSelectionModel(2));
+        this.optionalSections.push(new SectionSelectionModel(3));
 
-        this.detailSection = new NamedItem();
-        this.detailSection.id = 0;
+        this.detailSection = new NamedItem(0);
     }
 
     /**
@@ -132,7 +140,7 @@ export class SectionItem extends Base {
      */
 
     addOptionalSection() {
-        return new NamedItem(0);
+        return new SectionSelectionModel(0);
     }
 }
 
